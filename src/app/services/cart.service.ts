@@ -4,8 +4,8 @@ export interface Items {
   id: number;
   name: string;
   price: number;
-  imageUrl: string;
-  Quantity: number;
+  url: string;
+  quantity: number;
 }
 
 @Injectable({
@@ -27,16 +27,16 @@ export class CartService {
       (cartItem) => cartItem.id === product.id
     );
     if (itemIndex !== -1) {
-      console.log(typeof this.cartItems[itemIndex].Quantity, typeof product.quantity);
-      this.cartItems[itemIndex].Quantity = this.cartItems[itemIndex].Quantity +=
+      console.log(typeof this.cartItems[itemIndex].quantity, typeof product.quantity);
+      this.cartItems[itemIndex].quantity = this.cartItems[itemIndex].quantity +=
         parseInt(quantity.toString(), 10);
     } else {
       let cartItem: Items = {
         id: product.id,
         name: product.name,
-        imageUrl: product.imageUrl,
+        url: product.url,
         price: product.price,
-        Quantity: quantity,
+        quantity: quantity,
       };
       this.cartItems.push(cartItem);
     }
@@ -59,7 +59,7 @@ export class CartService {
   updateQuantity(productId: number, newQuantity: number): void {
     const itemIndex = this.cartItems.findIndex((item) => item.id === productId);
     if (itemIndex !== -1) {
-      this.cartItems[itemIndex].Quantity = newQuantity;
+      this.cartItems[itemIndex].quantity = newQuantity;
       this.saveCartItems();
     }
   }

@@ -1,1 +1,38 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="left-block">
+    <ul *ngIf="!isCartEmpty()">
+      <li *ngFor="let item of cartItems; let i = index">
+        <div class="product-item">
+          <img [src]="item.url" alt="Product Image">
+          <div class="product-details">
+            <h3>{{ item.name }}</h3>
+            <p class="price">Price: {{ item.price }}</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" [value]="item.quantity" (change)="updateQuantity(item.id, $event)" min="0" onkeydown="return false;">
+          </div>
+          <button class="remove-button" (click)="removeFromCart(i)">Remove</button>
+        </div>
+      </li>
+    </ul>
+    <p *ngIf="isCartEmpty()" class="empty-cart-message">Your cart is empty.</p>
+    <div class="total-amount">
+      <p>Total Amount: ${{ totalAmount | number:'1.2-2' }}</p>
+    </div>
+  </div>
+
+  <div class="right-block">
+    <div class="checkout-form">
+      <h2>Payment</h2>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" (input)="onFullNameChange($event)">
+
+      <label for="address">Address</label>
+      <input type="text" id="address">
+
+      <label for="creditCard">Credit Card Number</label>
+      <input type="text" id="creditCard">
+
+      <button (click)="submitPayment()" class="submit-button">Submit</button>
+    </div>
+  </div>
+</div>
