@@ -18,37 +18,14 @@ import { FormsModule } from "@angular/forms";
 
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
-  selectedQuantities: { [productId: number]: number } = {};
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private http: HttpClient
   ) {
-    this.products.forEach((product) => {
-      if (!this.selectedQuantities.hasOwnProperty(product.id)) {
-        this.selectedQuantities[product.id] = 1;
-      }
-    });
-  }
-
-  getProductDetail(productId: number): void {
-    this.router.navigate([ '/product', productId ]);
-  }
-
-  addToCart(product: Product): void {
-    const selectedQuantity = this.selectedQuantities[product.id];
-    // this.cartService.addToCart(product, selectedQuantity);
-    // this._snackBar.open('Added data successfully', 'Close', {
-    //   duration: 3000,
-    //   verticalPosition: 'top',
-    //   horizontalPosition: 'right',
-    // });
-  }
 
 
-  updateSelectedQuantity(product: Product, quantity: number): void {
-    this.selectedQuantities[product.id] = quantity;
   }
 
 
