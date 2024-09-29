@@ -20,12 +20,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
   constructor(
-    private productService: ProductService,
-    private router: Router,
     private http: HttpClient
   ) {
-
-
   }
 
 
