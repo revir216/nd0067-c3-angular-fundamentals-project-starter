@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { NgForOf } from "@angular/common";
 import { ProductItemComponent } from "../product-item/product-item.component";
 import { ProductService } from "../../services/product.service";
@@ -47,7 +47,7 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   backToProducts(): void {
-    this.router.navigate(['/products']);
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {

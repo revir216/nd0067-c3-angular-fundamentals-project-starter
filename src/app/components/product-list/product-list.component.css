@@ -19,3 +19,13 @@
   height: auto;
 }
 
+.hidden{
+  display: none;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+

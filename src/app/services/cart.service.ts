@@ -27,7 +27,6 @@ export class CartService {
       (cartItem) => cartItem.id === product.id
     );
     if (itemIndex !== -1) {
-      console.log(typeof this.cartItems[itemIndex].quantity, typeof product.quantity);
       this.cartItems[itemIndex].quantity = this.cartItems[itemIndex].quantity +=
         parseInt(quantity.toString(), 10);
     } else {

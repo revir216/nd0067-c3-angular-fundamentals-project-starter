@@ -1,5 +1,8 @@
-<div class="product-list">
-  <app-product-item *ngFor="let product of products" class="product" [product]="product">
+<div id="hidden" class="hidden">
+    <p>You have just added {{ currentNumber }} items into Cart</p>
+</div>
 
+<div class="product-list">
+  <app-product-item *ngFor="let product of products" class="product" [product]="product" (dataChange)="handleDataChange($event)">
   </app-product-item>
 </div>
