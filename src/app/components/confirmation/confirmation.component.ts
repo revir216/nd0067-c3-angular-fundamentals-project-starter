@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-confirmation',
@@ -8,5 +9,20 @@ import { Component } from '@angular/core';
   styleUrl: './confirmation.component.css'
 })
 export class ConfirmationComponent {
+  protected data: any;
+  constructor(private router: Router) {
+    this.data = {
+      name: "",
+      totalAmount: 0,
+    };
+  }
 
+  closeDialog(){
+    alert('Order confirmed');
+    this.router.navigate(['/']);
+  }
+
+  stopPropagation(event: MouseEvent): void {
+    event.stopPropagation();
+  }
 }

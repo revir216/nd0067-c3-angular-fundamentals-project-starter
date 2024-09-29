@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Items } from '../../services/cart.service';
-// import { MatSnackBar } from '@angular/material/snack-bar';
-// import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-// import { PaymentSuccessComponent } from '../payment-success/payment-success.component';
 import { Router } from '@angular/router';
 import { DecimalPipe, NgForOf, NgIf } from "@angular/common";
 
@@ -25,8 +22,6 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    // private _snackBar: MatSnackBar,
-    // private dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -38,11 +33,6 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCart(index);
     this.cartItems = this.cartService.getCartItems();
     this.calculateTotalAmount();
-    // this._snackBar.open('Remove successful!', 'Close', {
-    //   duration: 3000,
-    //   verticalPosition: 'top',
-    //   horizontalPosition: 'right',
-    // });
   }
 
   isCartEmpty(): boolean {
@@ -80,34 +70,17 @@ export class CartComponent implements OnInit {
       this.showMsg('Please enter a valid 16-digit credit card number');
     } else {
       this.cartService.clearCart();
-      // this.openPaymentSuccessDialog(this.fullName);
+      this.router.navigate(['/confirmation']);
     }
   }
 
   showMsg(message: string) {
-    // this._snackBar.open(message, 'Close', {
-    //   duration: 3000,
-    //   verticalPosition: 'top',
-    //   horizontalPosition: 'right',
-    // });
+    alert(message);
   }
 
   onFullNameChange(event: any) {
     this.fullName = event.target.value;
   }
-
-  // openPaymentSuccessDialog(name: string): void {
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.data = {
-  //     name: name,
-  //     totalAmount: this.totalAmount,
-  //   };
-  //   const dialogRef = this.dialog.open(PaymentSuccessComponent, dialogConfig);
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     this.router.navigate(['/products']);
-  //   });
-  // }
 
   isValidCreditCardNumber(creditCard: string) {
     var regex = /^\d{16}$/;

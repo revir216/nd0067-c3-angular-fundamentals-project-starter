@@ -1,1 +1,9 @@
-<p>confirmation works!</p>
+<div class="payment-success-container" (click)="stopPropagation($event)">
+  <h2 class="payment-success-title">Success!</h2>
+  <div class="payment-success-info">
+    <p><span>Thank you,</span> ${{ data.name }}</p>
+    <p><span>Your</span> ${{ data.totalAmount }} order is confirmed!</p>
+    <p>Please allow 1-3 bussiness day(s) for shipping</p>
+  </div>
+  <button class="payment-success-button" (click)="closeDialog()">Back to product list</button>
+</div>
