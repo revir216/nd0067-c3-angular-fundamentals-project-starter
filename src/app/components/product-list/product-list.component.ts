@@ -18,12 +18,18 @@ import { FormsModule } from "@angular/forms";
 
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  currentNumber: number = 0;
 
   constructor(
     private http: HttpClient
   ) {
   }
 
+  public handleDataChange($event:any):void {
+    this.currentNumber = $event;
+    // @ts-ignore
+    document.getElementById('hidden').className='display';
+  }
 
   ngOnInit() {
     this.http.get<Array<Product>>('/assets/data.json').subscribe(res => {
