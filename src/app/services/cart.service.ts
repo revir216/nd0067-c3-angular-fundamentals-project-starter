@@ -41,11 +41,17 @@ export class CartService {
       this.cartItems.push(cartItem);
     }
     this.saveCartItems();
+    alert('Item added to cart!');
   }
 
   removeFromCart(index: number): void {
     this.cartItems.splice(index, 1);
     this.saveCartItems();
+  }
+
+  setInformation(fullName: string, totalAmount:number): void {
+    localStorage.setItem('fullName', fullName);
+    localStorage.setItem('totalAmount', totalAmount.toString());
   }
 
   getCartItems(): any[] {

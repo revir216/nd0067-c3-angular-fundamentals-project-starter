@@ -1,1 +1,21 @@
-<p>product-item-detail works!</p>
+<div class="product-detail-container">
+    <div class="product-image detail-item" >
+    <img [src]="product.url" alt="{{ product.name }}">
+    </div>
+    <div class="product-details detail-item">
+        <h2>{{ product.name }}</h2>
+        <h3> {{ product.description }}</h3>
+        <p>Price: {{ product.price }}<b>$</b></p>
+        <div class="quantity-selector">
+            <select id="numberSelect" [(ngModel)]="selectedQuantities[product.id]"
+                    (ngModelChange)="updateSelectedQuantity(product, $event)">
+                <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="i" [selected]="i === 1">{{ i }}
+                </option>
+            </select>
+        </div>
+        <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
+        <div class="back-link">
+        <a (click)="backToProducts()" > Back to Product List</a>
+        </div>
+    </div>
+</div>

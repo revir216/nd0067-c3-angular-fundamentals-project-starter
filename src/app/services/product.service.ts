@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ProductService implements OnInit {
   private products: Array<Product> = [];
+  private currentProduct: Product | undefined;
 
   constructor(private http: HttpClient) {
   }
@@ -16,20 +17,19 @@ export class ProductService implements OnInit {
 
   getAllProducts(): Product[] {
     this.http.get<Array<Product>>('/assets/data.json').subscribe(result => {
-      console.log(result);
     this.products = result
     });
     console.log(this.products);
     return this.products;
   }
 
-  getProductById(id: number): Product | undefined {
+  getCurrentProduct(id: number): Product | undefined {
     return this.products.find((product) => product.id === id);
   }
 
   ngOnInit() {
     this.http.get<Array<Product>>('/assets/data.json').subscribe(res => {
-      this.products =  res;
+      this.products = res;
     });
   }
 }

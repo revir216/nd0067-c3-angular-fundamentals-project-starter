@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
     this.calculateTotalAmount();
   }
   removeFromCart(index: number): void {
+    alert('Item removed from cart');
     this.cartService.removeFromCart(index);
     this.cartItems = this.cartService.getCartItems();
     this.calculateTotalAmount();
@@ -64,12 +65,13 @@ export class CartComponent implements OnInit {
 
     if (this.totalAmount === 0 || this.isQuantityMissing()) {
       this.showMsg('Please select product to pay');
-    } else if (!fullName || !address || !creditCard) {
+    } else if (!this.fullName || !address || !creditCard) {
       this.showMsg('Please fill in all required fields');
     } else if (!this.isValidCreditCardNumber(creditCard)) {
       this.showMsg('Please enter a valid 16-digit credit card number');
     } else {
       this.cartService.clearCart();
+      this.cartService.setInformation(fullName,this.totalAmount);
       this.router.navigate(['/confirmation']);
     }
   }
