@@ -41,11 +41,6 @@ export class ProductItemComponent implements OnInit {
   addToCart(product: Product): void {
     const selectedQuantity = this.selectedQuantities[product.id];
     this.cartService.addToCart(product, selectedQuantity);
-    // this._snackBar.open('Added data successfully', 'Close', {
-    //   duration: 3000,
-    //   verticalPosition: 'top',
-    //   horizontalPosition: 'right',
-    // });
   }
 
   ngOnInit(): void {
